@@ -1,5 +1,8 @@
 package hello.core.member;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     // ⭐️ MemberRepository 에 뭐가 들어갈지를 생성자를 통해서 선택을 할거임 (생성자 주입)
@@ -19,5 +22,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Member findeMember(Long memberId) {
         return memberRepository.findById(memberId);
+    }
+
+    //Test 용
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
