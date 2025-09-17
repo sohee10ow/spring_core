@@ -1,5 +1,6 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+//@RequiredArgsConstructor //final 이 붙은걸 가지고 생성자를 만들어줌.
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
@@ -38,8 +40,9 @@ public class OrderServiceImpl implements OrderService {
 //    }
 
 
+//    @Autowired >> 생성자가 1개 일 경우 생략 가능
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
